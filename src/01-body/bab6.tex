@@ -1,0 +1,80 @@
+%---------------------------------------------------------------
+\chapter{\babEnam}
+\label{bab:6}
+Setelah melakukan eksperimen dan analisis hasil, pada \bab{}~\ref{bab:6} akan dipaparkan kesimpulan penelitian dan saran penelitian berikutnya. Pada \subbab{}~\ref{subbab:kesimpulan} ditarik kesimpulan dari analisis yang telah dilakukan. Kemudian, \subbab{}~\ref{subbab:saran} membahas tentang saran untuk penelitian berikutnya.
+%---------------------------------------------------------------
+
+
+
+
+
+%---------------------------------------------------------------
+\section{Kesimpulan}
+\label{subbab:kesimpulan}
+\subbab{} ini menyajikan kesimpulan utama dari penelitian yang telah dilakukan. Berdasarkan analisis dan hasil eksperimen, beberapa poin penting dapat disimpulkan sebagai berikut:
+
+\vspace{2mm}
+\noindent\textbf{Karakteristik Fitur}. Menurut hasil eksperimen yang didapatkan, karakteristik yang dapat membedakan jenis relevansi adalah fitur nilai relevansi \obm{}, relevansi LEMURTF\_IDF, dan kesamaan jaccard. Ketiga fitur tersebut secara konsisten mendapatkan nilai \textit{feature importance} yang tinggi dari seluruh sistem yang diuji.
+
+\vspace{2mm}
+\noindent\textbf{Peningkatan Efektivitas}. Pemanfaatan seluruh fitur untuk \reranking{} dapat meningkatkan performa seluruh metrik sekitar $4,17\%$ secara signifikan. Sedangkan pemanfaatan himpunan bagian dari fitur yang diusulkan, yaitu ketiga fitur terpenting yang konsisten, dapat meningkatkan nilai metrik utama sekitar $3, 739\%$, namun tidak cukup signifikan saat diuji menggunakan data \testing{}.
+% \begin{itemize}
+%     \item Pemanfaatan seluruh fitur untuk \reranking{} dapat meningkatkan performa seluruh metrik sekitar $4,17\%$ secara signifikan;
+%     \item Fitur nilai relevansi \obm{}, relevansi LEMURTF\_IDF, dan kesamaan jaccard merupakan karakteristik penting dari pasangan pertanyaan-pasal untuk melakukan penilaian relevansi;
+%     \item Fitur nilai relevansi \obm{}, relevansi LEMURTF\_IDF, dan kesamaan jaccard dapat meningkatkan performa sistem sekitar $3, 739\%$ namun tidak cukup signifikan saat diuji menggunakan data \testing{};
+%     \item Hasil kinerja \base{} \retriever{} tidak dapat dipastikan memiliki peningkatan efektivitas yang setara dengan ditambahkannya \reranker{} berbasis fitur walaupun menggunakan himpunan fitur yang sama;
+%     \item Kinerja terbaik untuk \recall{} pada \cutoff{} 3, secara umum, didapatkan menggunakan sistem \ir{} dengan DLH13 sebagai \base{} \retriever{} dan \reranker{} \lambdamart{} menggunakan seluruh fitur yang diusulkan;
+%     \item Tidak ditemukan korelasi yang kuat antara nilai \cutoff{} dan efektivitas dari sistem \cascaded{} \ir{} berdasarkan nilai korelasi \textit{pearson}.
+% \end{itemize}
+%---------------------------------------------------------------
+
+
+
+
+
+%---------------------------------------------------------------
+\section{Saran}
+\label{subbab:saran}
+Berdasarkan hasil penelitian ini, terdapat beberapa saran untuk penelitian selanjutnya:
+\begin{itemize}
+\item Replikasi metode yang telah diusulkan pada dokumen hukum berbahasa Indonesia;
+\item Menginvestigasi jumlah fitur yang efisien untuk suatu himpunan fitur menggunakan \textit{incremental ablation learning};
+\item Perlu dilakukan penelitian lebih lanjut untuk mengeksplorasi fitur-fitur tambahan yang dapat meningkatkan efektivitas klasifikasi relevansi. Penggunaan teknik pembelajaran mesin yang lebih canggih, seperti \textit{deep learning}, juga patut dipertimbangkan;
+\item Penelitian mendalam terhadap kombinasi berbagai \reranker{} berbasis fitur perlu dilakukan untuk mengidentifikasi konfigurasi yang paling efektif dalam meningkatkan kinerja \retriever{};
+\item Pengembangan dan pengujian model yang lebih kompleks untuk sistem \cascaded{} \ir{} dengan menambahkan tahapan \ranking{} untuk mengidentifikasi faktor-faktor yang berkontribusi terhadap efektivitas sistem;
+\item Implementasi dan evaluasi metode pada skenario diluar domain legal untuk memberikan wawasan berharga mengenai kinerja sistem dalam lingkup yang beragam.
+\end{itemize}
+%---------------------------------------------------------------
+
+
+
+
+%---------------------------------------------------------------
+% Pada bab ini, Penulis akan memaparkan kesimpulan penelitian dan saran untuk penelitian berikutnya.
+% \item Studi komprehensif tentang pengaruh berbagai metode \retriever{} dan \reranker{} terhadap \recall{} pada berbagai \cutoff{} akan memberikan pemahaman yang lebih baik mengenai dinamika sistem \ir{};
+
+
+% %---------------------------------------------------------------
+% \section{Kesimpulan}
+% \label{subbab:kesimpulan}
+% %---------------------------------------------------------------
+% Berikut ini adalah kesimpulan terkait pekerjaan yang dilakukan dalam penelitian ini:
+% \begin{enumerate}
+% 	\item \bo{Poin pertama} \\
+% 	Penjelasan poin pertama.
+% 	\item \bo{Poin kedua} \\
+% 	Penjelasan poin kedua.
+% \end{enumerate}
+
+% Tulis kalimat penutup di sini.
+
+
+% %---------------------------------------------------------------
+% \section{Saran}
+% \label{subbab:saran}
+% %---------------------------------------------------------------
+% Berdasarkan hasil penelitian ini, berikut ini adalah saran untuk pengembangan penelitian berikutnya:
+% \begin{enumerate}
+% 	\item Saran 1.
+% 	\item Saran 2.
+% \end{enumerate}

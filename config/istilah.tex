@@ -1,0 +1,136 @@
+%
+% @author  Andreas Febrian
+% @version 1.00
+%
+% Mendaftar seluruh istilah yang mungkin akan perlu dijadikan
+% italic atau bold pada setiap kemunculannya dalam dokumen.
+%
+
+\var{\license}{\f{Creative Common License 1.0 Generic}}
+\var{\bslash}{$\setminus$}
+
+% Italic Stuff
+\newcommand{\ir}[1]{\textit{Information Retrieval}}
+
+\newcommand{\reranker}[1]{\textit{re-ranker}}
+\newcommand{\Reranker}[1]{\textit{Re-ranker}}
+
+\newcommand{\sparse}[1]{\textit{sparse}}
+\newcommand{\txt}[1]{\textit{text}}
+\newcommand{\training}[1]{\textit{training}}
+\newcommand{\testing}[1]{\textit{testing}}
+\newcommand{\matching}[1]{\textit{matching}}
+\newcommand{\alg}[1]{\textit{algorithm}}
+\newcommand{\feature}[1]{\textit{feature}}
+\newcommand{\extraction}[1]{\textit{extraction}}
+\newcommand{\score}[1]{\textit{score}}
+\newcommand{\contextual}[1]{\textit{contextual}}
+\newcommand{\word}[1]{\textit{word}}
+\newcommand{\embedding}[1]{\textit{embedding#1}}
+\newcommand{\corpus}[1]{\textit{corpus}}
+\newcommand{\heuristic}[1]{\textit{heuristic}}
+\newcommand{\pipeline}[1]{\textit{pipeline}}
+\newcommand{\reranking}[1]{\textit{re-ranking}}
+\newcommand{\ml}[1]{\textit{machine learning}}
+\newcommand{\query}[1]{\textit{query}}
+\newcommand{\base}[1]{\textit{base}}
+\newcommand{\retrieval}[1]{\textit{retrieval}}
+\newcommand{\retriever}[1]{\textit{retriever}}
+\newcommand{\cutoff}[1]{\textit{cut-off}}
+\newcommand{\learning}[1]{\textit{learning}}
+\newcommand{\ablation}[1]{\textit{ablation}}
+\newcommand{\recall}[1]{\textit{recall}}
+\newcommand{\precision}[1]{\textit{precision}}
+\newcommand{\semantic}[1]{\textit{semantic}}
+\newcommand{\similarity}[1]{\textit{similarity}}
+\newcommand{\neural}[1]{\textit{neural}}
+\newcommand{\network}[1]{\textit{network}}
+\newcommand{\nn}[1]{\neural{} \network{}}
+\newcommand{\incremental}[1]{\textit{incremental}}
+\newcommand{\importance}[1]{\textit{importance}}
+\newcommand{\task}[1]{\textit{task}}
+\newcommand{\file}[1]{\textit{file}}
+\newcommand{\error}[1]{\textit{error}}
+\newcommand{\article}[1]{\textit{article}}
+\newcommand{\cascade}[1]{\textit{cascade}}
+\newcommand{\cascaded}[1]{\textit{cascaded}}
+\newcommand{\parsing}[1]{\textit{parsing}}
+\newcommand{\entail}[1]{\textit{entail}}
+\newcommand{\weighting}[1]{\textit{weighting}}
+\newcommand{\term}[1]{\textit{term}}
+\newcommand{\token}[1]{\textit{token#1}}
+\newcommand{\hs}[1]{\textit{hidden state#1}}
+\newcommand{\hcf}[1]{\textit{hand-crafted features}}
+\newcommand{\regex}[1]{\textit{regular expression}}
+\newcommand{\ranking}[1]{\textit{ranking}}
+\newcommand{\library}[1]{\textit{library}}
+\newcommand{\baseline}[1]{\textit{baseline}}
+\newcommand{\encoder}[1]{\textit{encoder}}
+\newcommand{\decoder}[1]{\textit{decoder}}
+\newcommand{\fcv}[1]{\textit{5-fold cross validation}}
+\newcommand{\ltr}[1]{\textit{learning to rank}}
+
+\newcommand{\Base}[1]{\textit{Base}}
+\newcommand{\Txt}[1]{\textit{Text}}
+\newcommand{\Matching}[1]{\textit{Matching}}
+\newcommand{\Semantic}[1]{\textit{Semantic}}
+\newcommand{\Similarity}[1]{\textit{Similarity}}
+\newcommand{\Pipeline}[1]{\textit{Pipeline}}
+\newcommand{\Retriever}[1]{\textit{Retriever}}
+\newcommand{\CutOff}[1]{\textit{Cut-Off}}
+
+% \newcommand{\Sys}[1]{\textit{System}}
+% \newcommand{\Training}[1]{\textit{Training}}
+% \newcommand{\Testing}[1]{\textit{Testing}}
+% \newcommand{\Alg}[1]{\textit{Algorithm}}
+% \newcommand{\Feature}[1]{\textit{Feature}}
+% \newcommand{\Extraction}[1]{\textit{Extraction}}
+% \newcommand{\Score}[1]{\textit{Score}}
+% \newcommand{\Contextual}[1]{\textit{Contextual}}
+% \newcommand{\Word}[1]{\textit{Word}}
+% \newcommand{\Embedding}[1]{\textit{Embedding}}
+% \newcommand{\Corpus}[1]{\textit{Corpus}}
+% \newcommand{\Heuristic}[1]{\textit{Heuristic}}
+% \newcommand{\Pipeline}[1]{\textit{Pipeline}}
+% \newcommand{\Reranking}[1]{\textit{Reranking}}
+% \newcommand{\Ml}[1]{\textit{Machine learning}}
+% \newcommand{\ML}[1]{\textit{Machine Learning}}
+% \newcommand{\Ltr}[1]{\textit{Learning to rank}}
+% \newcommand{\LTR}[1]{\textit{Learning to Rank}}
+% \newcommand{\Cutoff}[1]{\textit{Cut-off}}
+% \newcommand{\Learning}[1]{\textit{Learning}}
+% \newcommand{\Ablation}[1]{\textit{Ablation}}
+% \newcommand{\Recall}[1]{\textit{Recall}}
+% \newcommand{\Incremental}[1]{\textit{Incremental}}
+% \newcommand{\Importance}[1]{\textit{Importance}}
+% \newcommand{\Parsing}[1]{\textit{Parsing}}
+
+% Not Italic Stuff
+%% Singkatan Stuff
+\newcommand{\ranknet}[1]{RankNet}
+\newcommand{\lambdarank}[1]{LambdaRank}
+\newcommand{\lambdamart}[1]{LambdaMART}
+
+\newcommand{\obm}[1]{BM25}
+\newcommand{\dfr}[1]{DFR}
+\newcommand{\tfidf}[1]{TF-IDF}
+\newcommand{\inl}[1]{InL2}
+\newcommand{\dlh}[1]{DLH13}
+
+\newcommand{\tfive}[1]{T5}
+\newcommand{\ttttt}[1]{Text-to-Text Transfer Transformer}
+
+
+\newcommand{\bert}[1]{BERT}
+\newcommand{\lbert}[1]{Bidirectional Encoder Representations from Transformers}
+
+\newcommand{\COLIEE}[1]{COLIEE}
+\newcommand{\coliee}[1]{Competition on Legal Information, Extraction/Entailment}
+
+\newcommand{\llm}[1]{\textit{Large Language Model}}
+\newcommand{\LLM}[1]{\textit{LLM}}
+
+\newcommand{\ndcg}[1]{Normalized Discounted Cumulative Gain}
+\newcommand{\NDCG}[1]{NDCG}
+
+\newcommand{\transformer}[1]{transformer}

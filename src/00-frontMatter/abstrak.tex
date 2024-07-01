@@ -1,0 +1,46 @@
+%
+% Halaman Abstrak
+%
+% @author  Andreas Febrian
+% @version 2.1.2
+% @edit by Ichlasul Affan
+%
+
+\chapter*{Abstrak}
+\singlespacing
+
+\vspace*{0.2cm}
+
+\noindent \begin{tabular}{l l p{10cm}}
+	\ifx\blank\npmDua
+		Nama&: & \penulisSatu \\
+		Program Studi&: & \programSatu \\
+	\else
+		Nama Penulis 1 / Program Studi&: & \penulisSatu~/ \programSatu\\
+		Nama Penulis 2 / Program Studi&: & \penulisDua~/ \programDua\\
+	\fi
+	\ifx\blank\npmTiga\else
+		Nama Penulis 3 / Program Studi&: & \penulisTiga~/ \programTiga\\
+	\fi
+	Judul&: & \judul \\
+	Pembimbing&: & \pembimbingSatu \\
+	\ifx\blank\pembimbingDua
+    \else
+        \ &\ & \pembimbingDua \\
+    \fi
+    \ifx\blank\pembimbingTiga
+    \else
+    	\ &\ & \pembimbingTiga \\
+    \fi
+\end{tabular} \\
+
+\vspace*{0.5cm}
+
+\noindent Terdapat beberapa masalah yang muncul seiring dengan bertambahnya peraturan. Hal tersebut menyebabkan proses pengumpulan dan evaluasi peraturan memakan waktu yang relatif lebih lama. Oleh karena itu, diperlukan suatu sistem yang dapat mengotomatiskan kebutuhan tersebut, salah satunya adalah \ir{}. Penelitian ini bertujuan untuk meningkatkan efektivitas sistem \ir{} melalui pendekatan \reranker{} berbasis fitur dengan memanfaatkan beberapa jenis fitur, seperti atribut kuantitatif sederhana, skor \txt{} \matching{}, dan \textit{document embeddings}. Ditemukan bahwa skor kesamaan Jaccard, nilai relevansi \obm, dan nilai relevansi LemurTF\_IDF merupakan karakteristik yang dapat membantu peningkatan efektivitas \reranking{} secara konsisten dalam domain legal. Sementara itu, fitur yang memanfaatkan \textit{embeddings} dari \bert{} maupun \tfive{} didapatkan bermanfaat, namun memiliki kontribusi yang lebih kecil dari fitur perhitungan sederhana seperti kesamaan Jaccard. Selain itu, didapatkan bahwa pemanfaatan seluruh fitur sebagai masukan dari \reranker{} \lambdamart{} dapat meningkatkan seluruh metrik sistem sekitar $4,17\%$ secara signifikan dengan nilai metrik utama, \recall{}$@3$, tertinggi diperoleh DLH13 (Reranker) dengan nilai $0,6632$ dan peningkatan sebesar $5,64\%$. Namun, saat dilakukan percobaan menggunakan hanya ketiga fitur tersbut, didapatkan peningkatan sebesar $3,739\%$ yang tidak signifikan.\\
+
+\vspace*{0.2cm}
+
+\noindent Kata kunci: \\ Information retrieval, lambdamart, re-ranking, dokumen legal, bert, t5, berbasis fitur \\
+
+\setstretch{1.4}
+\newpage

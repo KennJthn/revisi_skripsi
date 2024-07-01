@@ -1,0 +1,46 @@
+%
+% Halaman Abstract
+%
+% @author  Andreas Febrian
+% @version 2.1.2
+% @edit by Ichlasul Affan
+%
+
+\chapter*{ABSTRACT}
+\singlespacing
+
+\vspace*{0.2cm}
+
+\noindent \begin{tabular}{l l p{11.0cm}}
+	\ifx\blank\npmDua
+		Name&: & \penulisSatu \\
+		Study Program&: & \studyProgramSatu \\
+	\else
+		Writer 1 / Study Program&: & \penulisSatu~/ \studyProgramSatu\\
+		Writer 2 / Study Program&: & \penulisDua~/ \studyProgramDua\\
+	\fi
+	\ifx\blank\npmTiga\else
+		Writer 3 / Study Program&: & \penulisTiga~/ \studyProgramTiga\\
+	\fi
+	Title&: & \judulInggris \\
+	Counselor&: & \pembimbingSatu \\
+	\ifx\blank\pembimbingDua
+	\else
+		\ &\ & \pembimbingDua \\
+	\fi
+	\ifx\blank\pembimbingTiga
+	\else
+		\ &\ & \pembimbingTiga \\
+	\fi
+\end{tabular} \\
+
+\vspace*{0.5cm}
+
+\noindent There are several issues that arise with the increasing number of regulations. This causes the process of collecting and evaluating regulations to take relatively longer. Therefore, a system is needed to automate these needs, one of which is Information Retrieval. This research aims to improve the effectiveness of the Information Retrieval system through a feature-based re-ranker approach by utilizing several types of features, such as simple quantitative attributes, text matching scores, and document embeddings. It was found that Jaccard similarity scores, \obm{} relevance values, and LemurTF\_IDF relevance values are characteristics that can consistently help improve re-ranking effectiveness in the legal domain. Meanwhile, features that utilize \bert{} and \tfive{} embeddings were found to be beneficial but contributed less than simple calculation features like Jaccard similarity. Additionally, it was found that using all the features as input for the \lambdamart{} re-ranker can significantly improve all system metrics by about $4,17\%$, with the highest main metric value, \recall{}$@3$, achieved by DLH13 (Reranker) with a value of $0.6632$ and an increase of $5,64\%$. However, when experiments were conducted using only the three features mentioned, an insignificant increase of $3,739\%$ was obtained.
+
+\vspace*{0.2cm}
+
+\noindent Key words: \\ Information retrieval, lambdamart, re-ranking, dokumen legal, bert, t5, feature-based \\
+
+\setstretch{1.4}
+\newpage

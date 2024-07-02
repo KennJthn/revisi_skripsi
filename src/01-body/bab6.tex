@@ -14,7 +14,7 @@ Setelah melakukan eksperimen dan analisis hasil, pada \bab{}~\ref{bab:6} akan di
 \subbab{} ini menyajikan kesimpulan utama dari penelitian yang telah dilakukan. Berdasarkan analisis dan hasil eksperimen, beberapa poin penting dapat disimpulkan sebagai berikut:
 
 \vspace{2mm}
-\noindent\textbf{Karakteristik Fitur}. Menurut hasil eksperimen yang didapatkan, karakteristik yang dapat membedakan jenis relevansi adalah fitur nilai relevansi \obm{}, relevansi LEMURTF\_IDF, dan kesamaan jaccard. Ketiga fitur tersebut secara konsisten mendapatkan nilai \textit{feature importance} yang tinggi dari seluruh sistem yang diuji.
+\noindent\textbf{Karakteristik Fitur}. Menurut hasil eksperimen yang didapatkan, karakteristik yang dapat membedakan jenis relevansi adalah fitur nilai relevansi \obm{}, relevansi LEMURTF\_IDF, dan kesamaan jaccard. Ketiga fitur tersebut secara konsisten mendapatkan nilai \feature{} \importance{} yang tinggi dari seluruh sistem yang diuji.
 
 \vspace{2mm}
 \noindent\textbf{Peningkatan Efektivitas}. Pemanfaatan seluruh fitur untuk \reranking{} dapat meningkatkan performa seluruh metrik sekitar $4,17\%$ secara signifikan. Sedangkan pemanfaatan himpunan bagian dari fitur yang diusulkan, yaitu ketiga fitur terpenting yang konsisten, dapat meningkatkan nilai metrik utama sekitar $3, 739\%$, namun tidak cukup signifikan saat diuji menggunakan data \testing{}.
@@ -42,7 +42,7 @@ Berdasarkan hasil penelitian ini, terdapat beberapa saran untuk penelitian selan
 \item Perlu dilakukan penelitian lebih lanjut untuk mengeksplorasi fitur-fitur tambahan yang dapat meningkatkan efektivitas klasifikasi relevansi. Penggunaan teknik pembelajaran mesin yang lebih canggih, seperti \textit{deep learning}, juga patut dipertimbangkan;
 \item Penelitian mendalam terhadap kombinasi berbagai \reranker{} berbasis fitur perlu dilakukan untuk mengidentifikasi konfigurasi yang paling efektif dalam meningkatkan kinerja \retriever{};
 \item Pengembangan dan pengujian model yang lebih kompleks untuk sistem \cascaded{} \ir{} dengan menambahkan tahapan \ranking{} untuk mengidentifikasi faktor-faktor yang berkontribusi terhadap efektivitas sistem;
-\item Implementasi dan evaluasi metode pada skenario diluar domain legal untuk memberikan wawasan berharga mengenai kinerja sistem dalam lingkup yang beragam.
+\item Implementasi dan evaluasi metode pada skenario di luar domain legal untuk memberikan wawasan berharga mengenai kinerja sistem dalam lingkup yang beragam.
 \end{itemize}
 %---------------------------------------------------------------
 

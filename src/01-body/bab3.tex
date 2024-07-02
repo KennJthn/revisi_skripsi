@@ -1,7 +1,7 @@
 %-----------------------------------------------------------------------------%
 \chapter{\babTiga}
 \label{bab:3}
-\bab{}~\ref{bab:3} menjelaskan metodologi pada penelitian ini. Pada \subbab{}~\ref{subbab:3:Alur Pekerjaan} dijelaskan langkah-langkah yang dilakukan selama penelitian ini secara keseluruhan.  Kemudian \subbab{}~\ref{subbab:3:Dataset} menerangkan tentang dataset yang digunakan dan pemrosesan yang dilakukan. Setelah itu, \subbab{}~\ref{subbab:3:Pengembangan Sistem Information Retrieval} membahas tentang permasalahan sistem \ir{} dan pendekatan yang diambil oleh peneliti demi meningkatkan efektivitas sistem \ir{} tersebut, yaitu dengan pendekatan model \ml{} berbasis \hcf{} untuk proses \reranking{}.
+\bab{}~\ref{bab:3} menjelaskan metodologi pada penelitian ini. Pada \subbab{}~\ref{subbab:3:Alur Pekerjaan} dijelaskan langkah-langkah yang dilakukan selama penelitian ini secara keseluruhan.  Kemudian \subbab{}~\ref{subbab:3:Dataset} menerangkan tentang \dataset{} yang digunakan dan pemrosesan yang dilakukan. Setelah itu, \subbab{}~\ref{subbab:3:Pengembangan Sistem Information Retrieval} membahas tentang permasalahan sistem \ir{} dan pendekatan yang diambil oleh peneliti demi meningkatkan efektivitas sistem \ir{} tersebut, yaitu dengan pendekatan model \ml{} berbasis \hcf{} untuk proses \reranking{}.
 %-----------------------------------------------------------------------------%
 
 
@@ -11,14 +11,14 @@
 %-----------------------------------------------------------------------------%
 \section{Alur Pekerjaan}
 \label{subbab:3:Alur Pekerjaan}
-Penelitian ini mengkaji fitur yang dapat diekstraksi dari dokumen dan kegunaannya pada proses \reranking{}, khususnya dalam domain legal. Untuk itu, tahap pertama yang dilakukan penulis adalah mengumpulkan data yang sesuai dengan tujuan penelitian, yaitu peraturan beserta beberapa pertanyaan/kasus terkait yang sudah diverifikasi kebenarannya. Setelah mendapatkan data yang sesuai, dilakukan \parsing{} untuk memberikan struktur pada data agar memudahkan pemrosesan data. Kemudian, peneliti mempersiapkan beberapa sistem \ir{} untuk melakukan serangkaian eksperimen.
+Penelitian ini mengkaji fitur yang dapat diekstraksi dari dokumen dan kegunaannya pada proses \reranking{}, khususnya dalam domain legal. Untuk itu, tahap pertama yang dilakukan penulis adalah mengumpulkan data yang sesuai dengan tujuan penelitian, yaitu peraturan beserta beberapa kasus terkait yang sudah diverifikasi. Setelah mendapatkan data yang sesuai, dilakukan \parsing{} untuk memberikan struktur pada data agar memudahkan pemrosesan data. Kemudian, peneliti mempersiapkan beberapa sistem \ir{} untuk melakukan serangkaian eksperimen.
 
 Eksperimen yang terlebih dahulu dilakukan adalah eksperimen menggunakan beberapa \txt{} \matching{} \alg{} (\base{} \retriever{}) agar dapat ditentukan yang cocok untuk membangun sistem \ir{} dalam domain legal. Sesudah seleksi, peneliti membuat sistem \ir{} menggunakan \base{} \retriever{} yang telah diseleksi untuk analisis melalui beberapa skenario eksperimen.
 %-----------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------%
 \section{Dataset}
 \label{subbab:3:Dataset}
-Dataset yang dimanfaatkan untuk perancangan sistem \ir{} pada penelitian ini diperoleh dari \coliee{} (\COLIEE{}) 2023, khususnya dataset yang digunakan pada \task{}~3 dan 4~\citep{goebel2023summary}. Dataset tersebut merupakan bagian dari Undang-undang hukum perdata Jepang yang sudah diterjemahkan secara resmi ke dalam bahasa Inggris berupa \txt{} \file{} yang berisi 768 pasal. Pada \gambar{}~\ref{gambar:TextFile}, diberikan pasal pertama yang terletak pada 7 baris paling atas dari \file{} \txt{}.
+\Dataset{} yang dimanfaatkan untuk perancangan sistem \ir{} pada penelitian ini diperoleh dari \coliee{} (\COLIEE{}) 2023, khususnya \dataset{} yang digunakan pada \task{}~3 dan 4~\citep{goebel2023summary}. \Dataset{} tersebut merupakan bagian dari Undang-undang hukum perdata Jepang yang sudah diterjemahkan secara resmi ke dalam bahasa Inggris berupa \txt{} \file{} yang berisi 768 pasal. Pada \gambar{}~\ref{gambar:TextFile}, diberikan pasal pertama yang terletak pada 7 baris paling atas dari \file{} \txt{}.
 \begin{figure}[!ht]
     \centering
     \begin{lstlisting}
@@ -52,9 +52,9 @@ A special provision that releases warranty can be made, but in that situation, w
     \label{gambar:XMLFile}
 \end{figure}
 
-Struktur dari XML \file{} tersebut berupa sebuah elemen \textit{dataset} yang berisi daftar elemen \textit{pair} dengan atribut \textit{id} dan \textit{label}. Atribut \textit{id} merupakan nilai unik yang diberikan untuk mengidentifikasi setiap kueri, sedangkan \textit{label} melambangkan \textit{entailment} bernilai biner \textit{"Y"}(\textit{entail}) atau \textit{"N"}(\textit{doesn't} \textit{entail}). Namun, karena fokus dari penelitian ini adalah proses \retrieval{} dokumen relevan, maka nilai \textit{entailment} yang merupakan keterhubungan dari kueri dengan dokumen yang relevan tersebut akan diabaikan. Selain atribut yang telah dijelaskan, suatu \textit{pair} juga mengandung 2 elemen, yaitu dokumen-dokumen relevan \(t_1\) dan kueri \(t_2\).
+Struktur dari XML \file{} tersebut berupa sebuah elemen \dataset{} yang berisi daftar elemen \textit{pair} dengan atribut \textit{id} dan \textit{label}. Atribut \textit{id} merupakan nilai unik yang diberikan untuk mengidentifikasi setiap kueri, sedangkan \textit{label} melambangkan \textit{entailment} bernilai biner \textit{"Y"}(\textit{entail}) atau \textit{"N"}(\textit{doesn't} \textit{entail}). Namun, karena fokus dari penelitian ini adalah proses \retrieval{} dokumen relevan, maka nilai \textit{entailment} yang merupakan keterhubungan dari kueri dengan dokumen yang relevan tersebut akan diabaikan. Selain atribut yang telah dijelaskan, suatu \textit{pair} juga mengandung 2 elemen, yaitu dokumen-dokumen relevan \(t_1\) dan kueri \(t_2\).
 
-Untuk kedua tipe \file{} tersebut, peneliti melakukan \parsing{} data ke struktur data tabel untuk mempermudah pemrosesan dan analisis yang akan dilakukan terhadap dataset. Terdapat 2 hasil \parsing{} yang dibedakan berdasarkan penanganan karakter spesial, yaitu tanpa penghilangan karakter spesial dan dengan penghilangan karakter spesial. Karakter yang dikategorikan sebagai karakter spesial dalam penelitian ini adalah garis miring '/', kurung buka '(', kurung tutup ')', tanda penghubung '-', dan tanda tanya '?', serta apostrof dan tanda kutip (' dan "). Hasil \parsing{} yang tidak dihilangkan karakter spesialnya digunakan untuk mempertahankan struktur semantik yang diberikan oleh keberadaan karakter tersebut dalam sebuah kalimat. Hal tersebut esensial karena dalam penelitian ini akan digunakan beberapa model \nn{} untuk ekstraksi makna semantik kalimat sebagai salah satu fitur, sehingga diperlukan hasil \parsing{} yang orisinal.
+Untuk kedua tipe \file{} tersebut, peneliti melakukan \parsing{} data ke struktur data tabel untuk mempermudah pemrosesan dan analisis yang akan dilakukan terhadap \dataset{}. Terdapat 2 hasil \parsing{} yang dibedakan berdasarkan penanganan karakter spesial, yaitu tanpa penghilangan karakter spesial dan dengan penghilangan karakter spesial. Karakter yang dikategorikan sebagai karakter spesial dalam penelitian ini adalah garis miring '/', kurung buka '(', kurung tutup ')', tanda penghubung '-', dan tanda tanya '?', serta apostrof dan tanda kutip (' dan "). Hasil \parsing{} yang tidak dihilangkan karakter spesialnya digunakan untuk mempertahankan struktur semantik yang diberikan oleh keberadaan karakter tersebut dalam sebuah kalimat. Hal tersebut esensial karena dalam penelitian ini akan digunakan beberapa model \nn{} untuk ekstraksi makna semantik kalimat sebagai salah satu fitur, sehingga diperlukan hasil \parsing{} yang orisinal.
 
 Pada \tabel{}~\ref{tabel:hasil parsing text file} diberikan cuplikan hasil \parsing{} yang dilakukan pada \txt{} \file{}, khususnya hasil dengan penghilangan karakter spesial. Terdapat kolom \txt{} yang memiliki nilai teks dari suatu pasal secara keseluruhan, kolom \textit{docno} sebagai nilai unik setiap pasal yang digunakan untuk identifikasi, dan kolom informasi tambahan mengenai struktur bagian dari pasal tertentu (\textit{part, chap, sect, subsect,} dan \textit{subsubsect}).
 
@@ -116,14 +116,14 @@ Peneliti melakukan pengembangan sistem \ir{} dalam bentuk \pipeline{} dengan ars
 %-----------------------------------------------------------------------------%
 \subsection{Definisi Tugas}
 \label{subbab:3:Definisi Tugas}
-Fokus dari penelitian ini adalah peningkatan efektivitas proses retrieval menggunakan \hcf{} atau fitur yang dibuat secara manual seperti yang ditunnjukkan pada \gambar{}~\ref{fig:posisiPenelitian}.
+Fokus dari penelitian ini adalah peningkatan efektivitas proses \retrieval{} menggunakan \hcf{} atau fitur yang dibuat secara manual seperti yang ditunjukkan pada \gambar{}~\ref{fig:posisiPenelitian}.
 \begin{figure}[!ht]
     \centering
     \includegraphics[scale=0.75]{assets/pdfs/PosisiPenelitian.pdf}
     \caption{Bagian dari sistem \ir{} yang akan diteliti}
     \label{fig:posisiPenelitian}
 \end{figure}
-Proses retrieval dalam konteks ini merujuk pada pengambilan dokumen yang relevan dari sekumpulan dokumen \(D_1,D_2,...,D_k\) berdasarkan kueri \(Q\). Algoritma \txt{} \matching{} digunakan untuk mencocokkan kueri dengan dokumen-dokumen yang ada, menghasilkan urutan dokumen dari yang paling relevan hingga yang paling tidak relevan. Dengan kata lain, algoritma ini memroses kueri dan mengembalikan daftar dokumen \(D_1,D_2,...,D_k\) yang terurut berdasarkan tingkat relevansinya secara menurun. Namun, sistem \ir{} yang hanya mengandalkan pencocokan kata memiliki beberapa kekurangan, seperti tidak diperhitungkannya semantik maupun sinonim dari kata yang dicocokkan~\citep{hambarde2023information}, sehingga sebuah dokumen yang relevan memiliki kemungkinan untuk mendapatkan nilai relevansi yang rendah. Untuk mengatasi kelemahan tersebut, berbagai pendekatan telah dikembangkan demi meningkatkan efektivitas dari sistem \ir{}, seperti pengintegrasian model \ml{}~\citep{burges2010ranknet} atau model \nn{}~\citep{1223700}.
+Proses \retrieval{} dalam konteks ini merujuk pada pengambilan dokumen yang relevan dari sekumpulan dokumen \(D_1,D_2,...,D_k\) berdasarkan kueri \(Q\). Algoritma \txt{} \matching{} digunakan untuk mencocokkan kueri dengan dokumen-dokumen yang ada, menghasilkan urutan dokumen dari yang paling relevan hingga yang paling tidak relevan. Dengan kata lain, algoritma ini memproses kueri dan mengembalikan daftar dokumen \(D_1,D_2,...,D_k\) yang terurut berdasarkan tingkat relevansinya secara menurun. Namun, sistem \ir{} yang hanya mengandalkan pencocokan kata memiliki beberapa kekurangan, seperti tidak diperhitungkannya semantik maupun sinonim dari kata yang dicocokkan~\citep{hambarde2023information}, sehingga sebuah dokumen yang relevan memiliki kemungkinan untuk mendapatkan nilai relevansi yang rendah. Untuk mengatasi kelemahan tersebut, berbagai pendekatan telah dikembangkan demi meningkatkan efektivitas dari sistem \ir{}, seperti pengintegrasian model \ml{}~\citep{burges2010ranknet} atau model \nn{}~\citep{1223700}.
 
 Model \nn{} tidak digunakan dalam penelitian ini karena sifatnya adalah \textit{black box} yang berarti bahwa logika dan cara kerja dari model ini tersembunyi sehingga sulit untuk memahami, melakukan verifikasi, maupun menafsirkan alasan dari keputusan yang dibuat oleh model~\citep{electronics8080832}, terutama dalam bidang \ir{}. Oleh karena itu, peneliti memilih model \ml{}, khususnya \lambdamart{}, dalam pembangunan sistem \ir{} untuk keperluan analisis fitur. Integrasi tersebut akan menerapkan arsitektur \cascaded{}~\citep{wang2011cascade} dengan seleksi 150 dokumen paling relevan oleh algoritma \txt{} \matching{} sebagai tahap pertama mengikuti penelitian terdahulu oleh \citet{nguyen2024captain}. Kemudian, dokumen-dokumen tersebut dipasangkan dengan kueri awal dan dilakukan ekstraksi fitur secara manual yang akan menjadi masukan dari \lambdamart{}. 
 %-----------------------------------------------------------------------------%
@@ -184,13 +184,13 @@ Sebelum melakukan ekstraksi fitur dan meningkatkan efektivitas sistem dengan \la
 %-----------------------------------------------------------------------------%
 \subsection{Usulan Fitur}
 \label{subbab:3:Usulan Fitur}
-Dari setiap pasangan yang dikembalikan \base{} \retriever{}, akan dilakukan ekstraksi berbagai fitur untuk dianalisis penggunaannya dalam proses \reranking{}. Fitur hasil ekstraksi dapat dikategorisasikan ke dalam 3 kelompok, antara lain:
+Dari setiap pasangan yang dikembalikan \base{} \retriever{}, akan dilakukan ekstraksi berbagai fitur untuk dianalisis penggunaannya dalam proses \reranking{}. Fitur hasil ekstraksi dapat dikategorikan ke dalam 3 kelompok, antara lain:
 
 %-----------------------------------------------------------------------------%
 \vspace{2mm}
-\noindent{}\textbf{Atribut Kuantitatif Sederhana}. Atribut kuantitatif sederhana adalah fitur-fitur dasar yang dapat diekstraksi dari teks tanpa memerlukan perhitungan kompleks atau analisis mendalam. Fitur-fitur ini tidak mempertimbangkan unsur kesamaan antara query dan dokumen, baik secara semantik, struktural, maupun tekstual. Dalam penelitian ini, beberapa fitur kuantitatif sederhana yang dianalisis meliputi jumlah kata pada kueri \(Len(q)\), jumlah kata pada dokumen \(Len(d)\), dan selisih jumlah kata antara kueri-dokumen \(LenDiff\) yang diekspresikan secara matematis sebagai
+\noindent{}\textbf{Atribut Kuantitatif Sederhana}. Atribut kuantitatif sederhana adalah fitur-fitur dasar yang dapat diekstraksi dari teks tanpa memerlukan perhitungan kompleks atau analisis mendalam. Fitur-fitur ini tidak mempertimbangkan unsur kesamaan antara kueri dan dokumen, baik secara semantik, struktural, maupun tekstual. Dalam penelitian ini, beberapa fitur kuantitatif sederhana yang dianalisis meliputi jumlah kata pada kueri \(Len(q)\), jumlah kata pada dokumen \(Len(d)\), dan selisih jumlah kata antara kueri-dokumen \(LenDiff\) yang diekspresikan secara matematis sebagai
 \[LenDiff(q,d)=|Len(q)-Len(d)| \, ,\]
-dengan q sebagai kueri; d merupakan dokumen;dan Len(x) ialah jumlah kata pada x.
+dengan $q$ sebagai kueri; $d$ merupakan dokumen;dan $Len(x)$ ialah jumlah kata pada $x$.
 
 %-----------------------------------------------------------------------------%
 \vspace{2mm}
@@ -207,8 +207,7 @@ dengan \(A\) merupakan himpunan kata \term{} dari kueri; \(B\) merupakan himpuna
 
 %-----------------------------------------------------------------------------%
 \vspace{2mm}
-\noindent{}\textbf{\textit{Semantic Similarity}}. Kelompok ini mengandung fitur-fitur yang berfokus pada kesamaan kontekstual atau semantik antara kueri dan dokumen, bukan hanya kesamaan secara tekstual. Makna atau semantik dari teks tersebut direpresentasikan dengan sebuah vektor yang diperoleh dengan memanfaatkan keluaran model \neural{} \network{}, secara khusus \tfive{} dan \bert{}. Untuk model \bert{}, peneliti menguji beberapa teknik yang diusulkan oleh \citet{devlin2018bert} dengan menggunakan kombinasi dan agregasi dari keluaran \hs{s} \bert{} tanpa \textit{fine-tuning}. Dalam penelitian ini, akan dikaji beberapa usulan \citeauthor{devlin2018bert} dan satu usulan peneliti, yaitu  $LHS\_MEAN$, yang dinotasikan sebagai
-% Dengan fungsi $CLS(HS_n)$ merupakan fungsi untuk mengambil vektor \textit{token} pertama hasil keluaran dari suatu \textit{hidden state} $HS_n$, maka dalam penelitian ini, akan digunakan fitur-fitur mengikuti usulan \citeauthor{devlin2018bert} dan satu usulan peneliti ($LHS\_MEAN$)
+\noindent{}\textbf{\textit{Semantic Similarity}}. Kelompok ini mengandung fitur-fitur yang berfokus pada kesamaan kontekstual atau semantik antara kueri dan dokumen, bukan hanya kesamaan secara tekstual. Makna atau semantik dari teks tersebut direpresentasikan dengan sebuah vektor yang diperoleh dengan memanfaatkan keluaran model \neural{} \network{}, secara khusus \tfive{} dan \bert{}. Untuk model \bert{}, peneliti menguji beberapa teknik yang diusulkan oleh \citet{devlin2018bert} dengan menggunakan kombinasi dan agregasi dari keluaran \hs{s} \bert{} tanpa \textit{fine-tuning}. Dalam penelitian ini, akan dikaji beberapa usulan \citet{devlin2018bert} dan satu usulan peneliti, yaitu  $LHS\_MEAN$, yang dinotasikan sebagai
 \begin{align*}
     FHS\_CLS&=CLS(HS_{0}) \, , \\
     STLHS\_CLS&=CLS(HS_{11}) \, , \\
@@ -218,7 +217,7 @@ dengan \(A\) merupakan himpunan kata \term{} dari kueri; \(B\) merupakan himpuna
     SUM\_AHS\_CLS&=\sum^{12}_{n=1} CLS(HS_{n}) \, , \\
     LHS\_MEAN&=mean(HS_{12}) \, ,
 \end{align*}
-dengan $HS_{n}$ merupakan vektor keluaran dari $ENC_{n}$ pada \textit{layer} ke-$n$; $CLS(HS_{n})$ adalah fungsi yang mengambil vektor \token{} pertama dari suatu \hs{} $HS_{n}$; dan \textit{mean} ialah fungsi yang menghitung rata-rata pada dimensi kedua, yaitu dimensi \token{}. Perhatikan bahwa simbol $\oplus{}$ merupakan operasi konkatenasi yang menambahkan suatu vektor di akhir vektor lainnya pada suatu dimensi tertentu.
+dengan $HS_{n}$ merupakan vektor keluaran dari $ENC_{n}$ pada \textit{layer} ke-$n$; $CLS(HS_{n})$ adalah fungsi yang mengambil vektor \token{} pertama dari suatu \hs{} $HS_{n}$; dan \textit{mean} ialah fungsi yang menghitung rata-rata pada dimensi kedua, yaitu dimensi \token{}. Perhatikan bahwa simbol $\oplus{}$ merupakan operasi penggabungan (\textit{concatenation}) yang menambahkan suatu vektor di akhir vektor lainnya pada suatu dimensi tertentu.
 
 Serupa halnya dengan model \bert{}, peneliti menguji beberapa teknik untuk model \tfive{} yang diusulkan oleh \citet{ni2021sentence}, yaitu dengan menggunakan rata-rata keluaran semua vektor \token{} dari \hs{} terakhir dan vektor \token{} pertama pada \hs{} terakhir yang dinotasikan dengan
 \begin{align*}
@@ -226,7 +225,7 @@ Serupa halnya dengan model \bert{}, peneliti menguji beberapa teknik untuk model
     LHS\_MEAN&=mean(HS_{12}) \, .
 \end{align*}
 
-Setelah mendapatkan representasi semantik berupa vektor dari \bert{} dan juga \tfive{}, untuk mengkuantifikasi kemiripan antara kedua representasi tersebut, peneliti menggunakan \textit{cosine similarity} yang umum digunakan dalam penyelesaian tugas pemrosesan bahasa alami~\citep{wehnert2021legal,zhou2022problems}. \textit{Cosine similarity} tersebut dapat diekspresikan dengan persamaan
+Setelah mendapatkan representasi semantik berupa vektor dari \bert{} dan juga \tfive{}, untuk mengukur kemiripan antara kedua representasi tersebut, peneliti menggunakan \textit{cosine similarity} yang umum digunakan dalam penyelesaian tugas pemrosesan bahasa alami~\citep{wehnert2021legal,zhou2022problems}. \textit{Cosine similarity} tersebut dapat diekspresikan dengan persamaan
 \begin{align*}
     cosine\_similarity(x_1,x_2)=\frac{x_1\cdot{}x_2}{max(||x_1||_2,\epsilon{})\cdot{}max(||x_2||_2,\epsilon{})} \, ,
 \end{align*}
@@ -235,12 +234,12 @@ dengan \(x_n\) merupakan vektor; \(\epsilon{}\) adalah konstanta yang sangat kec
 %-----------------------------------------------------------------------------%
 \subsection{Evaluasi Model}
 \label{subbab:3:Evaluasi Model}
-Evaluasi yang dilakukan terhadap model dalam penelitian ini mencakup evaluasi hasil menggunakan metrik dan evaluasi korelasi menggunakan koefisien korelasi \textit{pearson}. Metrik, dalam hal ini, akan digunakan untuk membandingkan kinerja antar sistem. Sementara itu, koefisien \textit{pearson} akan dimanfaatkan untuk menentukan hubungan linear dari dua buah variabel yang akan berguna untuk menginvestigasi korelasi antara \cutoff{} dengan efektivitas sistem \ir{}.
+Evaluasi yang dilakukan terhadap model dalam penelitian ini mencakup evaluasi hasil menggunakan metrik dan evaluasi korelasi menggunakan koefisien korelasi \textit{pearson}. Metrik, dalam hal ini, akan digunakan untuk membandingkan kinerja antar sistem. Sementara itu, koefisien \textit{pearson} akan dimanfaatkan untuk menentukan hubungan linear dari dua buah variabel yang akan berguna untuk menyelidiki korelasi antara \cutoff{} dengan efektivitas sistem \ir{}.
 
 \vspace{2mm}
 \noindent{}\textbf{Metrik Evaluasi}.
 \label{bagian:Metrik Evaluasi}
-Model dievaluasi menggunakan metrik yang dihitung berdasarkan urutan dokumen yang dikembalikan. Dari grafik pada \gambar{}~\ref{gambar:distribusi}, didapatkan distribusi yang memiliki rata-rata 1.2771 dan median 1 serta 98.69\% dari kueri tersebut hanya memiliki paling banyak 3 dokumen yang relevan. Karena tujuan dari perancangan sistem \ir{} dalam penelitian ini adalah memperbanyak dokumen relevan yang ditemui pada dokumen teratas untuk keperluan evaluasi oleh badan hukum, maka peneliti menentukan metric \recall{}, secara spesifik pada \cutoff{} 3 atau pada 3 dokumen teratas untuk mengevaluasi kinerja sistem tersebut. Metrik \recall{} dapat dihitung menggunakan rumus
+Model dievaluasi menggunakan metrik yang dihitung berdasarkan urutan dokumen yang dikembalikan. Dari grafik pada \gambar{}~\ref{gambar:distribusi}, didapatkan distribusi yang memiliki rata-rata 1.2771 dan median 1 serta 98.69\% dari kueri tersebut hanya memiliki paling banyak 3 dokumen yang relevan. Karena tujuan dari perancangan sistem \ir{} dalam penelitian ini adalah memperbanyak dokumen relevan yang ditemui pada dokumen teratas untuk keperluan evaluasi oleh badan hukum, maka peneliti menentukan metrik \recall{}, secara spesifik pada \cutoff{} 3 atau pada 3 dokumen teratas untuk mengevaluasi kinerja sistem tersebut. Metrik \recall{} dapat dihitung menggunakan rumus
 \begin{align*}
     R@k=\frac{TP}{TP+FN} \, ,
 \end{align*}
@@ -266,13 +265,13 @@ Korelasi \textit{pearson} $r$ adalah suatu perhitungan statistik yang mengevalua
 \[
 r=\frac{n\sum{}xy-(\sum{}x)(\sum{}y)}{\sqrt{(n\sum{}x^2-(\sum{}x)^2)(n\sum{}y^2-(\sum{}y)^2)}} \, ,
 \]
-dengan $n$ merupakan jumlah data yang diobservasi; serta $x$ dan $y$ adalah variabel data yang diobservasi.
+dengan $n$ merupakan jumlah data yang diamati; serta $x$ dan $y$ adalah variabel data yang ingin diselidiki korelasinya.
 
 %-----------------------------------------------------------------------------%
 \subsection{Feature Importance}
 \label{subbab:3:Feature Importance}
 % akan dimanfaatkan sebagai tolok ukur penentuan karakteristik atau fitur yang dapat membantu klasifikasi relevansi antara sepasang kueri dan dokumen.
-Evaluasi pemanfaatan fitur merupakan aspek penting dalam mengukur kinerja model, selain dari hasil yang diperoleh melalui metrik. Nilai \textit{feature importance} akan digunakan sebagai tolok ukur penentuan karakteristik atau fitur yang dapat bermanfaat dalam menentukan nilai relevansi antara sepasang kueri dan dokumen. Dalam penelitian ini, nilai \textit{feature importance} dari \lambdamart{} akan digunakan untuk evaluasi pemanfaatan fitur. Model \reranker{} tersebut dipilih karena kemampuannya yang unik dalam mengorbankan kinerja pada kueri tertentu untuk meningkatkan kinerja keseluruhan melalui proses seleksi \textit{split} dan penentuan nilai \textit{leaf}~\citep{burges2010ranknet}. Proses seleksi ini memungkinkan model untuk memilih fitur-fitur yang paling relevan dalam setiap tahap pemisahan data, yang kemudian digunakan untuk mengidentifikasi fitur mana yang paling sering digunakan. Dengan menganalisis frekuensi penggunaan fitur ini, peneliti dapat mengungkap karakteristik penting yang berkontribusi signifikan terhadap tugas penentuan relevansi dokumen legal. Analisis ini memberikan wawasan mendalam mengenai fitur-fitur kunci yang mempengaruhi keputusan model, serta membantu dalam pemahaman yang lebih baik tentang cara kerja model dan langkah-langkah yang dapat diambil untuk meningkatkan kinerjanya lebih lanjut.
+Evaluasi pemanfaatan fitur merupakan aspek penting dalam mengukur kinerja model, selain dari hasil yang diperoleh melalui metrik. Nilai \feature{} \importance{} akan digunakan sebagai tolok ukur penentuan karakteristik atau fitur yang dapat bermanfaat dalam menentukan nilai relevansi antara sepasang kueri dan dokumen. Dalam penelitian ini, nilai \feature{} \importance{} dari \lambdamart{} akan digunakan untuk evaluasi pemanfaatan fitur. Model \reranker{} tersebut dipilih karena kemampuannya yang unik dalam mengorbankan kinerja pada kueri tertentu untuk meningkatkan kinerja keseluruhan melalui proses seleksi \textit{split} dan penentuan nilai \textit{leaf}~\citep{burges2010ranknet}. Proses seleksi ini memungkinkan model untuk memilih fitur-fitur yang paling relevan dalam setiap tahap pemisahan data, yang kemudian digunakan untuk mengidentifikasi fitur mana yang paling sering digunakan. Dengan menganalisis frekuensi penggunaan fitur ini, peneliti dapat mengungkap karakteristik penting yang berkontribusi signifikan terhadap tugas penentuan relevansi dokumen legal. Analisis ini memberikan wawasan mendalam mengenai fitur-fitur kunci yang mempengaruhi keputusan model, serta membantu dalam pemahaman yang lebih baik tentang cara kerja model dan langkah-langkah yang dapat diambil untuk meningkatkan kinerjanya lebih lanjut.
 % Selain evaluasi hasil menggunakan metrik, peneliti juga melakukan evaluasi pemanfaatan fitur oleh model. Model \reranker{} yang akan digunakan untuk analisis adalah \lambdamart{}, terutama karena kemampuannya dalam memilih untuk mengorbankan kinerja pada kueri tertentu namun meningkatkan kinerja secara keseluruhan dengan melakukan seleksi \textit{split} dan nilai \textit{leaf}~\citep{burges2010ranknet}. Peneliti memanfaatkan hasil seleksi tersebut untuk melakukan analisis frekuensi penggunaan fitur yang menggambarkan karakteristik penting dalam tugas klasifikasi relevansi dokumen legal.
 %-----------------------------------------------------------------------------%
 

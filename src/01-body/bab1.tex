@@ -1,7 +1,7 @@
 %-----------------------------------------------------------------------------%
 \chapter{\babSatu}
 \label{bab:1}
-Praktisi hukum seperti hakim, pengacara, dan paralegal sering kali harus melakukan penelitian hukum yang mendalam saat menangani kasus atau perkara. Mereka memerlukan akses cepat dan akurat ke pasal-pasal atau yurisprudensi yang relevan. Untuk mendukung kebutuhan ini, penelitian ini berfokus pada pengembangan sistem \ir{} (IR) khusus untuk dokumen peraturan perundang-undangan. Sistem ini menggunakan pendekatan \cascaded{} \retrieval{} dan teknik \reranking{} menggunakan \reranker{} berbasis fitur untuk meningkatkan efisiensi dan akurasi dalam menemukan informasi hukum yang diperlukan. Sebagai awalan dari laporan penelitian, \subbab{}~\ref{bab:1} menjelaskan motivasi, pertanyaan, dan lingkup kajian dari penelitian ini. Pertama, \subbab{}~\ref{subbab:1:Latar Belakang} menyampaikan latar belakang dilakukannya penelitian ini. Kemudian, \subbab{}~\ref{subbab:1:Definisi Permasalahan} menguraikan dua permasalahan yang menjadi fokus penelitian ini. Setelah itu, \subbab{}~\ref{subbab:1:Batasan Permasalahan} membahas beberapa batasan terkait fitur yang digunakan untuk eksperimen. Selanjutnya, \subbab{}~\ref{subbab:1:Tujuan Penelitian} mendefinisikan tujuan dari penelitian. Sehabis itu, \subbab{}~\ref{subbab:1:Langkah Penelitian} mendeskripsikan langkah-langkah secara umum yang diambil dalam penelitian. Terakhir, \subbab{}~\ref{subbab:1:Sistematika Penulisan} menjelaskan sistematika penulisan laporan ini.
+Praktisi hukum seperti hakim, pengacara, dan \paralegal{} sering kali harus melakukan penelitian hukum yang mendalam saat menangani kasus atau perkara. Mereka memerlukan akses cepat dan akurat ke pasal-pasal atau yurisprudensi yang relevan. Untuk mendukung kebutuhan ini, penelitian ini berfokus pada pengembangan sistem \ir{} (IR) khusus untuk dokumen peraturan perundang-undangan. Sistem ini menggunakan pendekatan \cascaded{} \retrieval{} dan teknik \reranking{} menggunakan \reranker{} berbasis fitur untuk meningkatkan efisiensi dan akurasi dalam menemukan informasi hukum yang diperlukan. Sebagai awalan dari laporan penelitian, \subbab{}~\ref{bab:1} menjelaskan motivasi, pertanyaan, dan lingkup kajian dari penelitian ini. Pertama, \subbab{}~\ref{subbab:1:Latar Belakang} menyampaikan latar belakang dilakukannya penelitian ini. Kemudian, \subbab{}~\ref{subbab:1:Definisi Permasalahan} menguraikan dua permasalahan yang menjadi fokus penelitian ini. Setelah itu, \subbab{}~\ref{subbab:1:Batasan Permasalahan} membahas beberapa batasan terkait fitur yang digunakan untuk eksperimen. Selanjutnya, \subbab{}~\ref{subbab:1:Tujuan Penelitian} mendefinisikan tujuan dari penelitian. Sehabis itu, \subbab{}~\ref{subbab:1:Langkah Penelitian} mendeskripsikan langkah-langkah secara umum yang diambil dalam penelitian. Terakhir, \subbab{}~\ref{subbab:1:Sistematika Penulisan} menjelaskan sistematika penulisan laporan ini.
 %-----------------------------------------------------------------------------%
 
 
@@ -25,10 +25,10 @@ Dokumen hukum dalam jumlah yang besar, setiap hari, akan dievaluasi maupun ditam
 %-----------------------------------------------------------------------------%
 \section{Definisi Permasalahan}
 \label{subbab:1:Definisi Permasalahan}
-Seperti yang sudah disampaikan pada \subbab~\ref{subbab:1:Latar Belakang}, penelitian ini fokus kepada pengembangan model untuk \reranking{} hasil dari \sparse{} \retrieval{}, seperti \obm{}, dalam domain koleksi perundang-undangan. Pertanyaan besar yang dikaji adalah ``Bagaimana membangun model \textit{re-ranking} berbasis fitur yang efektif?'' Pertanyaan tersebut kemudian dipecah menjadi dua pertanyaan penelitian berikut:
+Seperti yang sudah disampaikan pada \subbab~\ref{subbab:1:Latar Belakang}, penelitian ini fokus kepada pengembangan model untuk \reranking{} hasil dari \sparse{} \retrieval{}, seperti \obm{}, dalam domain koleksi perundang-undangan. Pertanyaan besar yang dikaji adalah ``Bagaimana membangun model \reranking{} berbasis fitur yang efektif?'' Pertanyaan tersebut kemudian dipecah menjadi dua pertanyaan penelitian berikut:
 %Berikut ini adalah rumusan permasalahan dari penelitian yang dilakukan:
 \begin{itemize} [topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex]
-    \item Apa saja karakteristik dari pasangan pertanyaan-pasal yang dapat membedakan jenis relevansi?
+    \item Apa saja karakteristik dari pasangan kasus dan pasal relevan yang dapat membedakan jenis relevansi?
     \item Sejauh mana karakteristik tersebut dapat dimanfaatkan untuk meningkatkan efektivitas proses \retrieval{}?
 \end{itemize}
 %-----------------------------------------------------------------------------%
@@ -56,7 +56,7 @@ Untuk menjawab pertanyaan yang menjadi permasalahan dalam penelitian ini, diteta
 \label{subbab:1:Tujuan Penelitian}
 Dengan menetapkan permasalahan dan batasan penelitian, diharapkan dapat mencapai tujuan dari penelitian ini. Tujuan penelitian tersebut diuraikan sebagai berikut:
 \begin{itemize} [topsep=0pt, itemsep=-1ex, partopsep=1ex, parsep=1ex]
-    \item Menentukan karakteristik dari pasangan pertanyaan-pasal yang relevan pada domain legal;
+    \item Menentukan karakteristik dari pasangan kasus dan pasal yang relevan;
     \item Meningkatkan efektivitas sistem \ir{} dokumen legal dengan implementasi \reranker{} menggunakan fitur yang telah dianalisis.
 \end{itemize}
 %-----------------------------------------------------------------------------%
@@ -104,15 +104,15 @@ Dokumen ini disusun dengan sistematika penulisan yang teratur dan logis untuk me
     Pada \bab{}~\ref{bab:2}, dipelajari teori yang berkaitan dengan penelitian ini untuk memperoleh konsep-konsep dasar yang diperlukan dalam mencapai tujuan dari penelitian.
     
     \item \bab{}~\ref{bab:3}~\babTiga \\
-    Pada \bab{}~\ref{bab:3}, diuraikan pendekatan yang diambil saat melakukan eksperimen, meliputi alur pekerjaan, dataset, usulan pengembangan model, dan evaluasi model.
+    Pada \bab{}~\ref{bab:3}, diuraikan pendekatan yang diambil saat melakukan eksperimen, meliputi alur pekerjaan, \dataset{}, usulan pengembangan model, dan evaluasi model.
     
     \item \bab{}~\ref{bab:4}~\babEmpat \\
-    Pada \bab{}~\ref{bab:4}, dubahas implementasi metodologi yang telah dijelaskan pada \bab{}~\ref{bab:3} dalam bentuk pemrograman.
+    Pada \bab{}~\ref{bab:4}, dibahas implementasi metodologi yang telah dijelaskan pada \bab{}~\ref{bab:3} dalam bentuk pemrograman.
 
     \item \bab{}~\ref{bab:5}~\babLima \\
     Pada \bab{}~\ref{bab:5}, dijelaskan hasil eksperimen dan analisis yang telah dilakukan.
 
     \item \bab{}~\ref{bab:6}~\babEnam \\
-    Pada \bab{}~\ref{bab:6}, ditarik kesimpulan dari hasil penelitian ini beserta saran untuk penelitian selanjutnya.
+    Pada \bab{}~\ref{bab:6}, ditarik kesimpulan dari hasil penelitian ini beserta saran untuk pengembangan atau penelitian selanjutnya.
 \end{itemize}
 %-----------------------------------------------------------------------------%

@@ -1,7 +1,13 @@
 %-----------------------------------------------------------------------------%
 \chapter{\babEmpat}
 \label{bab:4}
-Metodologi yang telah dibahas sebelumnya akan diimplementasikan dengan bantuan program yang akan dibahas pada \bab{}~\ref{bab:4}. Pada \subbab{}~\ref{subbab:4:Persiapan Data}, dijelaskan cara \parsing{} dan pembersihan data yang dilakukan untuk semua \file{} data. Kemudian, \subbab{}~\ref{subbab:4:Implementasi Model} membahas tentang implementasi sistem \ir{} dalam bentuk \pipeline{}. Setelah itu, proses ekstraksi fitur akan disampaikan pada \subbab{}~\ref{subbab:4:Ekstraksi Fitur}. Terakhir, pada \subbab{}~\ref{subbab:4:Evaluasi Model}, akan dijelaskan implementasi kode evaluasi dan perhitungan metrik hasil eksperimen.
+Metodologi yang telah dibahas sebelumnya diimplementasikan dengan bantuan program yang akan dijelaskan pada \bab{}~\ref{bab:4}. Secara garis besar, untuk mempersiapkan eksperimen dalam penelitian ini, terdapat tiga hal yang perlu dilakukan, yaitu persiapan data, pembangunan \pipeline{}, dan perancangan fitur yang divisualisasikan pada \gambar{}~\ref{fig:bagan}. Pada \subbab{}~\ref{subbab:4:Persiapan Data}, dijelaskan cara \parsing{} dan pembersihan data yang dilakukan untuk semua \file{} data. Kemudian, \subbab{}~\ref{subbab:4:Implementasi Model} membahas tentang implementasi sistem \ir{} dalam bentuk \pipeline{}. Setelah itu, proses ekstraksi fitur akan disampaikan pada \subbab{}~\ref{subbab:4:Ekstraksi Fitur}. Terakhir, pada \subbab{}~\ref{subbab:4:Evaluasi Model}, akan dijelaskan implementasi kode evaluasi dan perhitungan metrik hasil eksperimen.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.85]{assets/pdfs/GarisBesarImplementasi.pdf}
+    \caption{Bagan implementasi yang perlu dilakukan. Pada bagian berwarna hijau, perlu dilakukan persiapan data kueri dan dokumen yang dilakukan dengan cara \parsing{} serta pembersihan karakter spesial, yang implementasinya dijelaskan pada \subbab{}~\ref{subbab:4:Persiapan Data}. Pada bagian berwarna merah, perlu dirancang suatu sistem \ir{} dengan arsitektur \cascaded{} yang diimplementasikan dengan membangun dan menyusun \pipeline{} serta membuat \textit{index} dengan bantuan \library{} pyterrier yang detailnya diberikan pada \subbab{}~\ref{subbab:4:Implementasi Model}. Kemudian, pada bagian oranye, perlu dilakukan berbagai ekstraksi fitur dari pasangan kueri-dokumen yang diperoleh dari \pipeline{} sebelumnya yang diimplementasikan pada \subbab{}~\ref{subbab:4:Ekstraksi Fitur}.}
+    \label{fig:bagan}
+\end{figure}
 %-----------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------%
 \section{Persiapan Data}
@@ -237,6 +243,24 @@ pipelines_with_reranker = {
         rerankers[reranker_name], form="ltr")
     for reranker_name in rerankers
 }\end{lstlisting}
+Dengan penambahan \reranker{} tersebut, diharapkan dapat meningkatkan efektivitas proses \retrieval{} seperti salah satu contoh kasus yang dapat ditemui pada \tabel{}~\ref{tabel:hasil re-ranking}.
+
+\begin{table}[H]
+    \centering
+    \caption{Cuplikan peningkatan hasil \reranking{}}
+    \label{tabel:hasil re-ranking}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{llrrp{0.3\linewidth}p{0.3\linewidth}}
+        \toprule
+        qid & docno & rank\_before & rank\_after & query & text\\
+        \midrule
+        H18-25-E & 109 & 0 & 0 & a person who has manifested to a third party that he ... been granted authority of agency. & Article 109   1  A person who indicates to a third party ... other person has authority to represent in that act.\\
+        H18-25-E & 107 & 4 & 3 & a person who has manifested to a third party that he ... been granted authority of agency. & Article 107  If an agent performs an act that falls within ... a person without authority to represent.\\
+        H18-25-E & 110 & 16 & 11 & a person who has manifested to a third party that he ... been granted authority of agency. & Article 110  The provisions of the main clause of paragraph  1  of the ... agent has the authority as an agent.\\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
 
 Sampai tahap ini, sistem \ir{} yang akan dianalisis sudah berhasil dikonstruksi. Oleh karena itu, berikutnya akan dilakukan persiapan untuk eksperimen. Pertama, dilakukan pendaftaran \base{} \retriever{} yang akan digunakan untuk pembanding saat eksperimen beserta pendekatan yang diusulkan dalam rupa sistem \ir{} yang implementasinya dapat ditemukan pada \kode{}~\ref{kode:daftar tanding}. Perlu diperhatikan bahwa, pada baris 13-14 dan 20-22, dilakukan pemisahan untuk sistem yang dilengkapi dengan \reranker{}. Hal tersebut dilakukan karena, dalam penelitian ini, dimanfaatkan suatu model \ml{}, sehingga terdapat kebutuhan pelatihan sebelum sistem dapat digunakan untuk menjalankan eksperimen.
 \begin{lstlisting}[language=Python, caption={Pendaftaran model untuk eksperimen}, label={kode:daftar tanding}]
@@ -299,11 +323,11 @@ def agg_metrics(
 %-----------------------------------------------------------------------------%
 \section{Ekstraksi Fitur}
 \label{subbab:4:Ekstraksi Fitur}
-Seperti yang telah disinggung di \subbab{}~\ref{subbab:4:Implementasi Model} bahwa terdapat \pipeline{} khusus yang akan digunakan untuk melakukan ekstraksi fitur, yaitu \pipeline{} \lstinline{all_features} pada \kode{}~\ref{kode:pipe get feature}. \subbab{}~\ref{subbab:4:Ekstraksi Fitur} membahas tentang implementasi proses ekstraksi fitur-fitur yang telah diusulkan pada \subbab{}~\ref{subbab:3:Usulan Fitur}. Secara garis besar, fitur yang akan diekstraksi dapat dibagi ke dalam 3 kelompok yang akan dijelaskan implementasinya pada \subbab{}~\ref{subbab:4:Ekstraksi Fitur:Atribut Kuantitatif Sederhana} untuk atribut kuantitatif sederhana, \subbab{}~\ref{subbab:4:Ekstraksi Fitur:Text Matching Score} untuk fitur skor \txt{} \matching{}, dan \subbab{}~\ref{subbab:4:Ekstraksi Fitur:Semantic Similarity} untuk pemanfaatan hasil \encoder{} sebagai fitur. Fitur-fitur tersebut akan diekstraksi dari hasil keluaran \pipeline{} sebelumnya, \kode{}~\ref{kode:pipe get text}, yang dapat dilihat cuplikannya pada \tabel{}~\ref{tabel:keluaran pertama} yang mengandung hasil kembalian paling relevan dari \lstinline{pipe_bm25}.
+Seperti yang telah disinggung di \subbab{}~\ref{subbab:4:Implementasi Model} bahwa terdapat \pipeline{} khusus yang akan digunakan untuk melakukan ekstraksi fitur, yaitu \pipeline{} \lstinline{all_features} pada \kode{}~\ref{kode:pipe get feature}. \subbab{}~\ref{subbab:4:Ekstraksi Fitur} membahas tentang implementasi proses ekstraksi fitur-fitur yang telah diusulkan pada \subbab{}~\ref{subbab:3:Usulan Fitur}. Secara garis besar, fitur yang akan diekstraksi dapat dibagi ke dalam 3 kelompok yang akan dijelaskan implementasinya pada \subbab{}~\ref{subbab:4:Ekstraksi Fitur:Atribut Kuantitatif Sederhana} untuk atribut kuantitatif sederhana, \subbab{}~\ref{subbab:4:Ekstraksi Fitur:Text Matching Score} untuk fitur skor \txt{} \matching{}, dan \subbab{}~\ref{subbab:4:Ekstraksi Fitur:Semantic Similarity} untuk pemanfaatan hasil \encoder{} sebagai fitur. Ketiga kelompok fitur tersebut akan diekstraksi dari hasil keluaran \pipeline{} sebelumnya, \kode{}~\ref{kode:pipe get text}, yang dapat dilihat cuplikannya pada \tabel{}~\ref{tabel:masukan feature extraction} yang mengandung hasil kembalian paling relevan dari \lstinline{pipe_bm25}. Dari hasil kembalian seperti yang telah dicontohkan, akan dimanfaatkan kolom \lstinline{query} yang merupakan teks kueri dan kolom \lstinline{text} yang merupakan teks dokumen untuk mendapatkan fitur sejumlah $40$. Proses ekstraksi tersebut divisualisasikan dalam bentuk diagram yang dilampirkan pada \gambar{}~\ref{Lampiran 1: Diagram Ekstraksi Fitur}.
 \begin{table}[H]
     \centering
-    \caption{Cuplikan keluaran \pipeline{} tahap \ranking{} pertama}
-    \label{tabel:keluaran pertama}
+    \caption{Cuplikan hasil sebagai masukan \pipeline{} ekstraksi fitur}
+    \label{tabel:masukan feature extraction}
     \resizebox{\textwidth}{!}{%
         \begin{tabular}{lrlrrp{0.225\linewidth}p{0.375\linewidth}}
         \toprule
@@ -342,7 +366,7 @@ def word_length_diff(query: str, document: str) -> np.ndarray[int]:
     return np.array([diff])
 \end{lstlisting}
 
-Fungsi yang telah didefinisikan pada \kode{}~\ref{kode:fungsi fitur jumlah kata} akan digunakan untuk mengekstraksi fitur dari pasangan kueri-dokumen yang dikembalikan oleh tahap \ranking{} pertama yang contohnya dapat dilihat pada \tabel{}~\ref{tabel:keluaran pertama}. \Pipeline{} ekstraksi dibuat dengan fungsi \lstinline{pyterrier.apply.doc_features} menggunakan fungsi \lstinline{lambda} yang dapat ditemukan pada \kode{}~\ref{kode:fitur jumlah kata}. Pada baris 1-9, didapatkan fitur jumlah kata pada kueri maupun dokumen. Sementara itu, pada baris 11-14 diperoleh selisih antara jumlah kata yang terdapat pada kueri dan dokumen sebagai fitur.
+Fungsi yang telah didefinisikan pada \kode{}~\ref{kode:fungsi fitur jumlah kata} akan digunakan untuk mengekstraksi fitur dari pasangan kueri-dokumen yang dikembalikan oleh tahap \ranking{} pertama yang contohnya dapat dilihat pada \tabel{}~\ref{tabel:masukan feature extraction}. \Pipeline{} ekstraksi dibuat dengan fungsi \lstinline{pyterrier.apply.doc_features} menggunakan fungsi \lstinline{lambda} yang dapat ditemukan pada \kode{}~\ref{kode:fitur jumlah kata}. Pada baris 1-9, didapatkan fitur jumlah kata pada kueri maupun dokumen. Sementara itu, pada baris 11-14 diperoleh selisih antara jumlah kata yang terdapat pada kueri dan dokumen sebagai fitur.
 \begin{lstlisting}[language=Python, caption={\Pipeline{} ekstraksi fitur jumlah kata}, label={kode:fitur jumlah kata}]
 query_length = pt.apply.doc_features(
     lambda query_doc:
@@ -372,7 +396,7 @@ query_document_length_diff = pt.apply.doc_features(
 % \vspace{2mm}
 % \noindent{}\textbf{Text Matching Score}
 
-Pada kelompok ini, akan dimanfaatkan model-model \base{} \retriever{} untuk melakukan perhitungan skor seperti kolom \textit{score} yang dapat ditemukan pada \tabel{}~\ref{tabel:keluaran pertama}. Skor yang didapat dari perhitungan model tersebut kemudian akan digunakan sebagai salah satu fitur. Pada \kode{}~\ref{kode:pembentukan model untuk ekstraksi fitur} akan dibentuk \pipeline{} untuk setiap model \base{} \retriever{} yang akan digunakan sebagai fitur. Perlu diperhatikan bahwa dilakukan penghapusan 5 model \base{} \retriever{} yang terpilih untuk sistem \ir{}, namun hal tersebut hanya dilakukan agar tidak terjadi ekstraksi lebih dari satu kali untuk model yang sama.
+Pada kelompok ini, akan dimanfaatkan model-model \base{} \retriever{} untuk melakukan perhitungan skor seperti kolom \textit{score} yang dapat ditemukan pada \tabel{}~\ref{tabel:masukan feature extraction}. Skor yang didapat dari perhitungan model tersebut kemudian akan digunakan sebagai salah satu fitur. Pada \kode{}~\ref{kode:pembentukan model untuk ekstraksi fitur} akan dibentuk \pipeline{} untuk setiap model \base{} \retriever{} yang akan digunakan sebagai fitur. Perlu diperhatikan bahwa dilakukan penghapusan 5 model \base{} \retriever{} yang terpilih untuk sistem \ir{}, namun hal tersebut hanya dilakukan agar tidak terjadi ekstraksi lebih dari satu kali untuk model yang sama.
 \begin{lstlisting}[language=Python, caption={\Pipeline{} ekstraksi fitur skor \base{} \retriever{}}, label={kode:pembentukan model untuk ekstraksi fitur}]
 base_models = ['BM25', 'TF_IDF', 'DLH13', 'InL2', 'DFR_BM25']
 other_models = ['BB2', 'BM25', 'CoordinateMatch', 'DFIC', 'DFIZ', 'DFR_BM25', 'DFRee',
